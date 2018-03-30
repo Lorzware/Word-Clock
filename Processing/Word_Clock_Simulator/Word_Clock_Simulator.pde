@@ -2,7 +2,8 @@ PFont f;
 PFont fs;
 int hour_disp = 0;
 int minute_disp = 0;
-String pattern = "MERXHANHATTEDEMNÄCHSEVVEBEINOHJERADEZWANZIGZEHNXVEEDELFÜNNEFNOHVÜRXHALVEEENDREIUHRXXZWEIVEERAACHSECHSIBBELFXZWÖLLEFÜNNEFZEHNÜNGINUHRXMEDDERNAACH";
+String pattern = "MERZHANHATTEDEMNÄCHSEVVEBEINOHJERADEZWANZIGGZEHNVEEDELFÜNNEFNOHVÜRAHALVEEENZWÖLFDREIZWEITAACHUHRFÜNNEFAVEERDSIBBELFSECHSZEHNÜNGINUHRIMEDDERNAACH";
+//String pattern = "MERXHANHATTEDEMNÄCHSEVVEBEINOHJERADEZWANZIGZEHNXVEEDELFÜNNEFNOHVÜRXHALVEEENDREIUHRXXZWEIVEERAACHSECHSIBBELFXZWÖLLEFÜNNEFZEHNÜNGINUHRXMEDDERNAACH";
 public static int ON = 200;
 boolean isManualTime = false;
 
@@ -25,6 +26,7 @@ void draw() {
     String hour_s = nf(hour_disp, 2);
     String minute_s = nf(minute_disp, 2);
     text(hour_s + ":" + minute_s, 30,63*13);
+    
     //fill(ON);
     //textFont(fs);
     //text(i, 63*(i%12 )+30, 63*(int(i/12)+1) - 40);
@@ -48,7 +50,7 @@ int[] getTimeMask(int hour, int minute) {
   int[] timeMask = new int[144];
   boolean isNight = false;
   for (int i = 0; i < 144; ++i) {
-    timeMask[i] = ON/16;
+    timeMask[i] = ON/4;
   }
   
   setLetters(timeMask, 0, 3);      // MER
@@ -60,15 +62,15 @@ int[] getTimeMask(int hour, int minute) {
   if (hour % 12 == 11 && minute == 11) {
     setLetters(timeMask, 4, 3);    // HAN 
     setLetters(timeMask, 52, 3);   // ELF
-    setLetters(timeMask, 79, 3);   // UHR
-    setLetters(timeMask, 104, 3);  // ELF
+    setLetters(timeMask, 93, 3);   // UHR
+    setLetters(timeMask, 112, 3);  // ELF
   } else if (hour % 12 == 11 && minute == 12) {
     // Special case 11:12 (HATTE JERADE ELF UHR ELF)
     setLetters(timeMask, 7, 5);    // HATTE
     setLetters(timeMask, 30, 6);   // JERADE
     setLetters(timeMask, 52, 3);   // ELF
-    setLetters(timeMask, 79, 3);   // UHR
-    setLetters(timeMask, 104, 3);  // ELF
+    setLetters(timeMask, 93, 3);   // UHR
+    setLetters(timeMask, 112, 3);  // ELF
   } else {
     switch (minute % 5) {
     case 0:
@@ -111,7 +113,7 @@ int[] getTimeMask(int hour, int minute) {
       setLetters(timeMask, 60, 3);   // NOH
       break;
     case 2: // 10 nach
-      setLetters(timeMask, 43, 4);   // ZEHN
+      setLetters(timeMask, 44, 4);   // ZEHN
       setLetters(timeMask, 60, 3);   // NOH
       break;
     case 3: // 15 nach
@@ -149,7 +151,7 @@ int[] getTimeMask(int hour, int minute) {
       ++hour;   // increase displayed hour since it is before a certain time.
       break;
     case 10: // 10 vor
-      setLetters(timeMask, 43, 4);   // ZEHN
+      setLetters(timeMask, 44, 4);   // ZEHN
       setLetters(timeMask, 63, 3);   // VÜR
       ++hour;   // increase displayed hour since it is before a certain time.
       break;
@@ -172,12 +174,12 @@ int[] getTimeMask(int hour, int minute) {
           setLetters(timeMask, 127, 2);   // IN 
           setLetters(timeMask, 136, 2);   // DE
           setLetters(timeMask, 139, 5);   // NAACH
-          setLetters(timeMask, 108, 7);   // ZWÖLLEF
+          setLetters(timeMask, 75, 5);   // ZWÖLLEF
         }
         
       } else {
         // Otherwise it is simply 'ZWÖLLEF'
-        setLetters(timeMask, 108, 7);   // ZWÖLLEF
+        setLetters(timeMask, 75, 5);   // ZWÖLLEF
       }
       break;
     case 1:
@@ -187,22 +189,22 @@ int[] getTimeMask(int hour, int minute) {
       setLetters(timeMask, 84, 4);   // ZWEI
       break;
     case 3:
-      setLetters(timeMask, 75, 4);   // DREI
+      setLetters(timeMask, 80, 4);   // DREI
       break;
     case 4:
-      setLetters(timeMask, 84, 4);   // VEER
+      setLetters(timeMask, 103, 4);   // VEER
       break;
     case 5:
-      setLetters(timeMask, 114, 6);  // FÜNNEF
+      setLetters(timeMask, 96, 6);  // FÜNNEF
       break;
     case 6:
-      setLetters(timeMask, 96, 5);   // SECHS
+      setLetters(timeMask, 115, 5);   // SECHS
       break;
     case 7:
-      setLetters(timeMask, 100, 5);  // SIBBE
+      setLetters(timeMask, 108, 5);  // SIBBE
       break;
     case 8:
-      setLetters(timeMask, 92, 4);   // AACH
+      setLetters(timeMask, 89, 4);   // AACH
       break;
     case 9:
       setLetters(timeMask, 123, 4);  // NÜNG
@@ -211,7 +213,7 @@ int[] getTimeMask(int hour, int minute) {
       setLetters(timeMask, 120, 4);  // ZEHN
       break;
     case 11:
-      setLetters(timeMask, 104, 3);  // ELF
+      setLetters(timeMask, 112, 3);  // ELF
       break;
     }
   }
