@@ -61,7 +61,7 @@ void updateTimeMask(uint8_t hour, uint8_t minute) {
   case 2:
     dist = 60 + timestamp.second;
     setLetters(6, 5);   // ÉTAIT
-    setLettersColor(20, 4, hsl2Rgb(hue_min + hue_step * dist, saturation, lightness));  // JUSTE
+    setLettersColor(12, 5, hsl2Rgb(hue_min + hue_step * dist, saturation, lightness));  // JUSTE
     break;
   case 3:
     dist = 120 - timestamp.second;

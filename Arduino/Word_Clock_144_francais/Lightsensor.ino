@@ -8,7 +8,6 @@ boolean updateLightsensor() {
   } else {
     change = false;
   }
-  Serial.println(brightness);
   return change;
 }
 

@@ -1,4 +1,5 @@
 #include <Adafruit_NeoPixel.h>
+#include <EEPROM.h>
 
 #ifdef __AVR__
   #include <avr/power.h>
@@ -19,6 +20,8 @@ void setup() {
   Serial.begin(115200);
   Wire.begin();
 
+  initEEPROM();
+  printPinout();
   initRTC();
   initWordMatrix();
   initButtons();
